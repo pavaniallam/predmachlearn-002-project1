@@ -8,6 +8,7 @@ output: html_document
 Load the project data into the workspace. The 'ProjectTemplate' package is used to structure the project. 
 
 ```{r}
+set.seed (825)
 library (ProjectTemplate)
 load.project()
 ```
@@ -26,6 +27,19 @@ nzv <- nearZeroVar (pml.training)
 pml.training <- pml.training[, -nzv, with = FALSE]
 dim (pml.training)
 ```
+
+Many of the fields have large numbers of missing values.  Exclude these as they will not be useful.
+
+```{r}
+
+#
+# TODO NEED TO EXCLUDE MORE FIELDS WITH MOSTLY NA VALUES
+#
+
+exclude <- 6:27
+pml.training <- pml.training[, -exclude, with = FALSE]
+```
+
 
 The original training data set is split 80/20 into a training set and a validation data set to use for cross-validation
 
