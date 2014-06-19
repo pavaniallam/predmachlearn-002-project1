@@ -1,5 +1,19 @@
+---
+output: pdf_document
+---
 Practical Machine Learning - Project 1
 ===================================================================
+
+#### Solution
+
+The solution for this exercise is contained in the 'project1.Rmd' R markdown document.  Running this document will generate not only a document outlining each of the steps taken, but will also output the test set results that were submitted for grading.
+
+File                 | Description
+-------------------- | ------------------------------------------------------------------------------
+project1.Rmd         | The R markdown document implementing the predictive model for this exercise.
+project1.html        | The R markdown document generated in HTML.
+project1.pdf         | The R markdown document generated in a PDF.
+munge/pml-training.R | Performs simply data pre-processing.
 
 #### Background
 

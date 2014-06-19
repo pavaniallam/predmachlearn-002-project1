@@ -2,12 +2,12 @@
 title: "Practical Machine Learning - Project 1"
 author: "Nick Allen"
 date: "Wednesday, June 18, 2014"
-output: html_document
+output: pdf_document
 ---
 
 Load the project data into the workspace. The 'ProjectTemplate' package is used to structure the project. 
 
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 set.seed (825)
 library (ProjectTemplate)
 load.project( )
@@ -86,11 +86,11 @@ plot (profile, type = c("g", "o"))
 
 Using the trained model, predict the 'classe' for the validation set.  Assuming that the provided training and test sets have similar characteristics, this will provide a fair measure of the model's accuracy.
 
-```{r}
+```{r, results='hide'}
 validate [, classe.hat := predict (profile, newdata = .SD)]
 ```
 
-A confusion matrix identifies how good the predictions were.
+A confusion matrix identifies how good the predictions were.  The model is achieving a >98% level of accuracy.  The results are similar across all reference classes.
 
 ```{r}
 confusionMatrix(validate$classe.hat, validate$classe)
@@ -98,8 +98,29 @@ confusionMatrix(validate$classe.hat, validate$classe)
 
 Using the trained model, make predictions on the test data that needs to be submitted as part of this project.
 
-```{r}
+```{r, results='hide'}
 pml.testing [, classe.hat := predict (profile, newdata = .SD)]
+answers <- pml.testing [["classe.hat"]]
+```
+
+Output the results so they can be submitted.
+
+```{r}
+#
+# write the solutions for the test set to separate files for submission
+#
+pml_write_files = function (x, directory = "solutions") {
+  dir.create (directory)
+  
+  n = length(x)
+  for(i in 1:n){
+    filename = paste0 ("problem_id_",i,".txt")
+    filename = file.path (directory, filename)
+    write.table (x[i], file=filename, quote=FALSE, row.names=FALSE, col.names=FALSE)
+  }
+}
+
+pml_write_files (answers)
 ```
 
 
