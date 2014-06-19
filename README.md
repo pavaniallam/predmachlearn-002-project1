@@ -1,6 +1,3 @@
----
-output: pdf_document
----
 Practical Machine Learning - Project 1
 ===================================================================
 
